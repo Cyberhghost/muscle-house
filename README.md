@@ -4,7 +4,7 @@ Plateforme e-commerce premium pour compléments sportifs en Algérie.
 
 ## Stack Technique
 
-- **Frontend/Backend**: Next.js 14+ (TypeScript, App Router)
+- **Frontend/Backend**: Next.js 16+ (TypeScript, App Router)
 - **Base de données**: PostgreSQL
 - **ORM**: Prisma
 - **State management**: Zustand
