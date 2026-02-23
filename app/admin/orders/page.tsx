@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { Eye } from 'lucide-react';
 
 interface Order {
@@ -40,16 +40,16 @@ export default function AdminOrders() {
   const [loading, setLoading] = useState(true);
   const [filterStatus, setFilterStatus] = useState('');
   const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
+  const [refreshKey, setRefreshKey] = useState(0);
 
-  const fetchOrders = useCallback(async () => {
+  useEffect(() => {
+    let cancelled = false;
     const params = filterStatus ? `?status=${filterStatus}` : '';
-    const res = await fetch(`/api/orders${params}`);
-    const data = await res.json();
-    setOrders(data.orders || []);
-    setLoading(false);
-  }, [filterStatus]);
-
-  useEffect(() => { fetchOrders(); }, [fetchOrders]);
+    fetch(`/api/orders${params}`)
+      .then((r) => r.json())
+      .then((data) => { if (!cancelled) { setOrders(data.orders || []); setLoading(false); } });
+    return () => { cancelled = true; };
+  }, [filterStatus, refreshKey]);
 
   const updateStatus = async (id: number, status: string) => {
     await fetch(`/api/orders/${id}`, {
@@ -57,7 +57,7 @@ export default function AdminOrders() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ status }),
     });
-    fetchOrders();
+    setRefreshKey((k) => k + 1);
     if (selectedOrder?.id === id) setSelectedOrder((o) => o ? { ...o, status } : null);
   };
 

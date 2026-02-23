@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { Plus, Pencil, Trash2 } from 'lucide-react';
 import Image from 'next/image';
 
@@ -17,20 +17,20 @@ export default function AdminCategories() {
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [editCategory, setEditCategory] = useState<Category | null>(null);
+  const [refreshKey, setRefreshKey] = useState(0);
 
-  const fetchCategories = useCallback(async () => {
-    const res = await fetch('/api/categories');
-    const data = await res.json();
-    setCategories(data);
-    setLoading(false);
-  }, []);
-
-  useEffect(() => { fetchCategories(); }, [fetchCategories]);
+  useEffect(() => {
+    let cancelled = false;
+    fetch('/api/categories')
+      .then((r) => r.json())
+      .then((data) => { if (!cancelled) { setCategories(data); setLoading(false); } });
+    return () => { cancelled = true; };
+  }, [refreshKey]);
 
   const handleDelete = async (id: number) => {
     if (!confirm('Supprimer cette catégorie?')) return;
     await fetch(`/api/categories/${id}`, { method: 'DELETE' });
-    fetchCategories();
+    setRefreshKey((k) => k + 1);
   };
 
   return (
@@ -80,7 +80,7 @@ export default function AdminCategories() {
         <CategoryModal
           category={editCategory}
           onClose={() => setShowModal(false)}
-          onSave={() => { setShowModal(false); fetchCategories(); }}
+          onSave={() => { setShowModal(false); setRefreshKey((k) => k + 1); }}
         />
       )}
     </div>

@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useCartStore } from '@/store/cartStore';
-import { ShoppingCart, Truck, Search, Menu, X, Globe } from 'lucide-react';
+import { ShoppingCart, Truck, Search, Menu, X } from 'lucide-react';
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);

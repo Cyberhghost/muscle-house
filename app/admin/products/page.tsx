@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { Plus, Pencil, Trash2, Search } from 'lucide-react';
 import Image from 'next/image';
 
@@ -22,23 +22,21 @@ export default function AdminProducts() {
   const [search, setSearch] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [editProduct, setEditProduct] = useState<Product | null>(null);
-
-  const fetchProducts = useCallback(async () => {
-    const params = search ? `?search=${encodeURIComponent(search)}` : '';
-    const res = await fetch(`/api/products${params}`);
-    const data = await res.json();
-    setProducts(data.products || []);
-    setLoading(false);
-  }, [search]);
+  const [refreshKey, setRefreshKey] = useState(0);
 
   useEffect(() => {
-    fetchProducts();
-  }, [fetchProducts]);
+    let cancelled = false;
+    const params = search ? `?search=${encodeURIComponent(search)}` : '';
+    fetch(`/api/products${params}`)
+      .then((r) => r.json())
+      .then((data) => { if (!cancelled) { setProducts(data.products || []); setLoading(false); } });
+    return () => { cancelled = true; };
+  }, [search, refreshKey]);
 
   const handleDelete = async (id: number) => {
     if (!confirm('Supprimer ce produit?')) return;
     await fetch(`/api/products/${id}`, { method: 'DELETE' });
-    fetchProducts();
+    setRefreshKey((k) => k + 1);
   };
 
   return (
@@ -149,7 +147,7 @@ export default function AdminProducts() {
         <ProductModal
           product={editProduct}
           onClose={() => setShowModal(false)}
-          onSave={() => { setShowModal(false); fetchProducts(); }}
+          onSave={() => { setShowModal(false); setRefreshKey((k) => k + 1); }}
         />
       )}
     </div>

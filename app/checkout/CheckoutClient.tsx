@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { useCartStore } from '@/store/cartStore';
-import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { CheckCircle, Truck } from 'lucide-react';
@@ -21,7 +20,6 @@ interface Props {
 }
 
 export default function CheckoutClient({ shippingFees, freeShippingAll }: Props) {
-  const router = useRouter();
   const { items, totalPrice, clearCart } = useCartStore();
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);

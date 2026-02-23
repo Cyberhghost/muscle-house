@@ -34,10 +34,8 @@ export default function AdminLayoutClient({ children }: { children: React.ReactN
 
   useEffect(() => {
     // Check auth by hitting a protected endpoint
-    if (pathname === '/admin/login') {
-      setChecking(false);
-      return;
-    }
+    if (pathname === '/admin/login') return;
+
     fetch('/api/admin/dashboard')
       .then((res) => {
         if (res.ok) {
