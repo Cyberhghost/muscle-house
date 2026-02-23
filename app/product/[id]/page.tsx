@@ -43,6 +43,7 @@ export default async function ProductPage({ params }: Props) {
     },
     orderBy: { displayOrder: 'asc' },
     take: 4,
+    include: { category: true },
   }).catch(() => []);
 
   return <ProductDetailClient product={product} related={related} />;
