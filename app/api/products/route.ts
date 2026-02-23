@@ -10,7 +10,7 @@ const productSchema = z.object({
   promoPrice: z.number().positive().nullable().optional(),
   stock: z.number().int().min(0),
   categoryId: z.number().int().positive(),
-  imageUrl: z.string().url(),
+  imageUrl: z.string().min(1),
   displayOrder: z.number().int().min(0).optional(),
   freeShipping: z.boolean().optional(),
   isActive: z.boolean().optional(),

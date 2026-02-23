@@ -6,7 +6,7 @@ import { requireAdmin } from '@/lib/auth';
 const settingsSchema = z.object({
   freeShippingAll: z.boolean().optional(),
   deliveryApiKey: z.string().optional(),
-  deliveryApiUrl: z.string().url().optional().or(z.literal('')),
+  deliveryApiUrl: z.string().url().optional().nullable(),
 });
 
 export async function GET(req: NextRequest) {

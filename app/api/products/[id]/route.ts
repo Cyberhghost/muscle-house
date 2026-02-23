@@ -10,7 +10,7 @@ const updateSchema = z.object({
   promoPrice: z.number().positive().nullable().optional(),
   stock: z.number().int().min(0).optional(),
   categoryId: z.number().int().positive().optional(),
-  imageUrl: z.string().url().optional(),
+  imageUrl: z.string().min(1).optional(),
   displayOrder: z.number().int().min(0).optional(),
   freeShipping: z.boolean().optional(),
   isActive: z.boolean().optional(),
