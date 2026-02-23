@@ -7,6 +7,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { CheckCircle, Truck } from 'lucide-react';
 
+const ALGERIAN_PHONE_REGEX = /^0[5-7]\d{8}$/;
+
 interface ShippingFee {
   id: number;
   wilaya: string;
@@ -44,7 +46,7 @@ export default function CheckoutClient({ shippingFees, freeShippingAll }: Props)
   const validate = () => {
     const newErrors: Record<string, string> = {};
     if (!form.customerName.trim()) newErrors.customerName = 'Nom requis';
-    if (!form.phone.trim() || !/^0[5-7]\d{8}$/.test(form.phone)) newErrors.phone = 'Numéro invalide (ex: 0561727883)';
+    if (!form.phone.trim() || !ALGERIAN_PHONE_REGEX.test(form.phone)) newErrors.phone = 'Numéro invalide (ex: 0561727883)';
     if (!form.address.trim()) newErrors.address = 'Adresse requise';
     if (!form.wilaya) newErrors.wilaya = 'Wilaya requise';
     return newErrors;

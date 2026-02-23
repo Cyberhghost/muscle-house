@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
 import { prisma } from '@/lib/prisma';
+import Link from 'next/link';
 import ProductCard from '@/components/ProductCard';
 import type { Metadata } from 'next';
 
@@ -31,9 +32,9 @@ export default async function CategoryPage({ params }: Props) {
     <div className="min-h-screen pt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <nav className="flex items-center gap-2 text-sm text-gray-400 mb-8">
-          <a href="/" className="hover:text-[#00d4aa]">Accueil</a>
+          <Link href="/" className="hover:text-[#00d4aa]">Accueil</Link>
           <span>/</span>
-          <a href="/categories" className="hover:text-[#00d4aa]">Catégories</a>
+          <Link href="/categories" className="hover:text-[#00d4aa]">Catégories</Link>
           <span>/</span>
           <span className="text-white">{category.name}</span>
         </nav>
