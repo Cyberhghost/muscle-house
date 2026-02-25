@@ -22,7 +22,7 @@ export default function ProductsSection({ title, products, showPromoBadge, showN
   if (products.length === 0) return null;
 
   return (
-    <section className="py-20 bg-[#0a0a0a]">
+    <section className="py-20 bg-[#0f1d33]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between mb-10">
           <h2 className="text-3xl md:text-4xl font-black text-white">

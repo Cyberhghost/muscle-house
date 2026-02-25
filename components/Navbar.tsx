@@ -26,7 +26,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0a]/95 backdrop-blur-sm border-b border-white/10">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0f1d33]/95 backdrop-blur-sm border-b border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -60,7 +60,6 @@ export default function Navbar() {
 
           {/* Right Icons */}
           <div className="flex items-center gap-3">
-            {/* Search */}
             <button
               onClick={() => setSearchOpen(!searchOpen)}
               className="p-2 hover:text-[#00d4aa] transition-colors"
@@ -69,22 +68,19 @@ export default function Navbar() {
               <Search size={20} />
             </button>
 
-            {/* Tracking icon (mobile) */}
             <Link href="/tracking" className="p-2 hover:text-[#00d4aa] transition-colors md:hidden" aria-label="Suivi">
               <Truck size={20} />
             </Link>
 
-            {/* Cart */}
             <Link href="/cart" className="relative p-2 hover:text-[#00d4aa] transition-colors" aria-label="Panier">
               <ShoppingCart size={20} />
               {mounted && totalItems > 0 && (
-                <span className="absolute -top-1 -right-1 bg-[#00d4aa] text-[#0a0a0a] text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                <span className="absolute -top-1 -right-1 bg-[#00d4aa] text-[#0f1d33] text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
                   {totalItems > 99 ? '99+' : totalItems}
                 </span>
               )}
             </Link>
 
-            {/* Mobile Menu */}
             <button
               onClick={() => setMenuOpen(!menuOpen)}
               className="md:hidden p-2 hover:text-[#00d4aa] transition-colors"
@@ -107,7 +103,7 @@ export default function Navbar() {
                 className="flex-1 bg-white/10 border border-white/20 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-[#00d4aa] transition-colors"
                 autoFocus
               />
-              <button type="submit" className="bg-[#00d4aa] text-[#0a0a0a] px-4 py-2 rounded-lg text-sm font-medium hover:bg-[#00b894] transition-colors">
+              <button type="submit" className="bg-[#00d4aa] text-[#0f1d33] px-4 py-2 rounded-lg text-sm font-medium hover:bg-[#00b894] transition-colors">
                 Rechercher
               </button>
             </form>

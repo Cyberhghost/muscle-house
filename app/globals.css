@@ -6,12 +6,15 @@
   --color-dark-blue: #1a3a5c;
   --color-promo-red: #e53e3e;
   --color-offwhite: #f5f5f5;
-  --color-dark: #0a0a0a;
+  --color-dark: #0f1d33;   /* Bleu navy du logo */
+  --color-card: #152238;   /* Bleu foncé pour cartes */
+  --color-section: #1a2a4a;/* Bleu foncé overlay */
   --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
 }
 
+/* Fond général du site */
 body {
-  background: #0a0a0a;
+  background: #0f1d33;   /* Bleu navy */
   color: #ffffff;
 }
 
@@ -26,7 +29,7 @@ a {
 
 .btn-primary {
   background-color: #00d4aa;
-  color: #0a0a0a;
+  color: #0f1d33;     /* Accent + bleu navy */
   font-weight: 700;
   padding: 0.75rem 1.5rem;
   border-radius: 0.375rem;
@@ -48,5 +51,22 @@ a {
 
 .btn-outline:hover {
   background-color: #00d4aa;
-  color: #0a0a0a;
+  color: #0f1d33;
+}
+
+/* Pour les sections et les cartes */
+.section-bg {
+  background: #1a2a4a;
+}
+.card-bg {
+  background: #152238;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  background: #152238;
+}
+::-webkit-scrollbar-thumb {
+  background: #00d4aa;
+  border-radius: 4px;
 }

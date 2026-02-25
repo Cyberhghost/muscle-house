@@ -42,11 +42,11 @@ export default function HeroSection() {
     <section className="relative h-[88vh] min-h-[500px] flex items-center overflow-hidden mt-16">
       {/* Background */}
       <div
-        className="absolute inset-0 bg-gradient-to-br from-[#0a0a0a] via-[#1a3a5c]/40 to-[#0a0a0a]"
+        className="absolute inset-0 bg-gradient-to-br from-[#0f1d33] via-[#1a2a4a]/60 to-[#0f1d33]"
         style={{
           backgroundImage: `
-            radial-gradient(ellipse at 20% 50%, rgba(26,58,92,0.4) 0%, transparent 50%),
-            radial-gradient(ellipse at 80% 20%, rgba(0,212,170,0.08) 0%, transparent 40%)
+            radial-gradient(ellipse at 20% 50%, rgba(26,42,74,0.6) 0%, transparent 50%),
+            radial-gradient(ellipse at 80% 20%, rgba(0,212,170,0.1) 0%, transparent 40%)
           `,
         }}
       />
@@ -80,13 +80,13 @@ export default function HeroSection() {
           <div className="flex flex-wrap gap-4">
             <Link
               href={slides[current].ctaLink}
-              className="bg-[#00d4aa] text-[#0a0a0a] font-bold px-8 py-4 rounded-lg hover:bg-[#00b894] transition-all transform hover:scale-105"
+              className="bg-[#00d4aa] text-[#0f1d33] font-bold px-8 py-4 rounded-lg hover:bg-[#00b894] transition-all transform hover:scale-105"
             >
               {slides[current].cta}
             </Link>
             <Link
               href="/nouveautes"
-              className="border-2 border-[#00d4aa] text-[#00d4aa] font-bold px-8 py-4 rounded-lg hover:bg-[#00d4aa] hover:text-[#0a0a0a] transition-all"
+              className="border-2 border-[#00d4aa] text-[#00d4aa] font-bold px-8 py-4 rounded-lg hover:bg-[#00d4aa] hover:text-[#0f1d33] transition-all"
             >
               Nouveautés
             </Link>

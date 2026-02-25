@@ -33,8 +33,8 @@ export default function ProductCard({ product }: { product: Product }) {
 
   return (
     <Link href={`/product/${product.id}`} className="group block">
-      <div className="bg-[#111111] border border-white/10 rounded-xl overflow-hidden hover:border-[#00d4aa]/50 transition-all duration-300 hover:shadow-lg hover:shadow-[#00d4aa]/5">
-        <div className="relative aspect-square overflow-hidden bg-[#1a1a1a]">
+      <div className="bg-[#152238] border border-white/10 rounded-xl overflow-hidden hover:border-[#00d4aa]/50 transition-all duration-300 hover:shadow-lg hover:shadow-[#00d4aa]/5">
+        <div className="relative aspect-square overflow-hidden bg-[#1a2a4a]">
           <Image
             src={product.imageUrl || '/images/placeholder.svg'}
             alt={product.name}
@@ -50,12 +50,12 @@ export default function ProductCard({ product }: { product: Product }) {
               </span>
             )}
             {product.isNew && (
-              <span className="bg-[#00d4aa] text-[#0a0a0a] text-xs font-bold px-2 py-0.5 rounded">
+              <span className="bg-[#00d4aa] text-[#0f1d33] text-xs font-bold px-2 py-0.5 rounded">
                 NEW
               </span>
             )}
             {product.freeShipping && (
-              <span className="bg-[#1a3a5c] text-white text-xs px-2 py-0.5 rounded">
+              <span className="bg-[#1a2a4a] text-white text-xs px-2 py-0.5 rounded">
                 Livraison gratuite
               </span>
             )}
@@ -79,7 +79,7 @@ export default function ProductCard({ product }: { product: Product }) {
             </div>
             <button
               onClick={handleAddToCart}
-              className="bg-[#00d4aa] text-[#0a0a0a] p-2 rounded-lg hover:bg-[#00b894] transition-colors"
+              className="bg-[#00d4aa] text-[#0f1d33] p-2 rounded-lg hover:bg-[#00b894] transition-colors"
               aria-label="Ajouter au panier"
             >
               <ShoppingCart size={16} />
