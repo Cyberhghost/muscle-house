@@ -61,10 +61,10 @@ export default function AdminDashboard() {
   if (!data) return null;
 
   const stats = [
-    { label: 'Commandes aujourd\'hui', value: data.todayOrders, icon: ShoppingBag, color: 'text-[#00d4aa]' },
-    { label: 'Commandes en attente', value: data.pendingOrders, icon: Clock, color: 'text-yellow-400' },
-    { label: 'Produits actifs', value: data.totalProducts, icon: Package, color: 'text-blue-400' },
-    { label: 'Revenus totaux (DA)', value: data.totalRevenue.toLocaleString('fr-DZ'), icon: TrendingUp, color: 'text-green-400' },
+    { label: 'Cmdes du jour', value: data.todayOrders, icon: ShoppingBag, color: 'text-[#00d4aa] bg-[#1a2a4a]' },
+    { label: 'Cmdes en attente', value: data.pendingOrders, icon: Clock, color: 'text-yellow-400 bg-yellow-500/10' },
+    { label: 'Produits actifs', value: data.totalProducts, icon: Package, color: 'text-blue-400 bg-blue-500/10' },
+    { label: 'Revenus totaux (DA)', value: data.totalRevenue.toLocaleString('fr-DZ'), icon: TrendingUp, color: 'text-green-400 bg-green-500/10' },
   ];
 
   return (
@@ -76,28 +76,33 @@ export default function AdminDashboard() {
         {stats.map((stat) => {
           const Icon = stat.icon;
           return (
-            <div key={stat.label} className="bg-[#111] border border-white/10 rounded-2xl p-6">
-              <div className="flex items-center justify-between mb-4">
-                <p className="text-gray-400 text-sm">{stat.label}</p>
-                <Icon size={20} className={stat.color} />
+            <div
+              key={stat.label}
+              className={`rounded-2xl p-6 border border-white/10 flex flex-col gap-2 bg-[#152238]`}
+            >
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-gray-400 text-xs">{stat.label}</span>
+                <span className={`rounded-full p-1.5 ${stat.color}`}>
+                  <Icon size={20} />
+                </span>
               </div>
-              <p className={`text-3xl font-black ${stat.color}`}>{stat.value}</p>
+              <p className={`text-3xl font-black text-white`}>{stat.value}</p>
             </div>
           );
         })}
       </div>
 
       {/* Recent Orders */}
-      <div className="bg-[#111] border border-white/10 rounded-2xl p-6">
+      <div className="bg-[#152238] border border-white/10 rounded-2xl p-6">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="font-bold text-white">Commandes récentes</h2>
-          <Link href="/admin/orders" className="text-[#00d4aa] text-sm hover:underline">
+          <h2 className="font-bold text-white text-lg">Commandes récentes</h2>
+          <Link href="/admin/orders" className="text-[#00d4aa] text-sm hover:underline font-bold">
             Voir tout →
           </Link>
         </div>
 
         {data.recentOrders.length === 0 ? (
-          <p className="text-gray-500 text-sm text-center py-8">Aucune commande pour le moment</p>
+          <p className="text-gray-400 text-sm text-center py-8">Aucune commande pour le moment</p>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
@@ -110,13 +115,13 @@ export default function AdminDashboard() {
                   <th className="text-left pb-3 font-medium">Statut</th>
                 </tr>
               </thead>
-              <tbody className="space-y-2">
+              <tbody>
                 {data.recentOrders.map((order) => (
-                  <tr key={order.id} className="border-b border-white/5 hover:bg-white/2">
-                    <td className="py-3 text-gray-400">#{order.id}</td>
+                  <tr key={order.id} className="border-b border-white/5 hover:bg-[#1a2a4a]/60">
+                    <td className="py-3 text-gray-400 font-mono">#{order.id}</td>
                     <td className="py-3 text-white">{order.customerName}</td>
                     <td className="py-3 text-gray-400">{order.wilaya}</td>
-                    <td className="py-3 text-[#00d4aa] font-medium">{order.totalAmount.toLocaleString('fr-DZ')} DA</td>
+                    <td className="py-3 text-[#00d4aa] font-bold">{order.totalAmount.toLocaleString('fr-DZ')} DA</td>
                     <td className="py-3">
                       <span className={`px-2 py-1 rounded-lg text-xs font-medium ${statusColors[order.status]}`}>
                         {statusLabels[order.status]}
